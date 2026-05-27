@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 
 
-function DropDown({setDropDownVisibleId,handleRemove,id,setRenameField}) {
+function DropDown({setDropDownVisibleId,id,setRenameField,handleRemoveFromOpenTabs,handleRemove}) {
  
  
   const ref= useRef() 
@@ -31,10 +31,15 @@ function DropDown({setDropDownVisibleId,handleRemove,id,setRenameField}) {
     
   }
 
+  const handledelete = (id)=>{
+    handleRemoveFromOpenTabs(id)
+    handleRemove(id)
+  }
+
   return (
-    <div ref={ref}  className=' z-10 w-[150px] absolute left-60 top-10  text-xs rounded-md shadow-full bg-gray-700 text-white flex flex-col gap-1 p-1'>
+    <div ref={ref}  className=' z-10 w-[150px] absolute left-60 top-5  text-xs rounded-md shadow-full bg-gray-700 text-white flex flex-col gap-1 p-1'>
          <p className='border-b hover:bg-gray-500 border-white'>Create</p>
-          <p className='border-b hover:bg-gray-500 border-white' onClick={()=>handleRemove(id)}>Delete</p>
+          <p className='border-b hover:bg-gray-500 border-white' onClick={()=>handledelete(id)}>Delete</p>
          <p className='border-b hover:bg-gray-500 border-white' onClick={handleRename}>Rename</p>
     </div>
   )
